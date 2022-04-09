@@ -1,13 +1,7 @@
 pipeline {
     
     
-     tools {  'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'Docker' }
-    
-     stage('Initialize'){
-        def dockerHome = tool 'Docker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
-    }
-    
+    tools {  'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'Docker' }
     
     agent {
         docker {
@@ -17,6 +11,13 @@ pipeline {
     } 
     
     stages {
+             
+       stage('Initialize'){
+           
+        def dockerHome = tool 'Docker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+           
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
