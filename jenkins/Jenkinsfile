@@ -4,9 +4,9 @@ pipeline {
    tools {
        'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'Docker'
     }
-
+    
     agent {
-        docker {
+        docker.withTool("default") {
             image 'maven:3-alpine'
             args '-v /root/.m2:/root/.m2'
         }
