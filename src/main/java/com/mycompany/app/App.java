@@ -12,7 +12,8 @@ public class App
 
     public static void main(String[] args) {
         System.out.println(new App().getMessage());
-        Thread.sleep(7000); 
+         Thread.sleep(7000); 
+
     }
 
     private final String getMessage() {
