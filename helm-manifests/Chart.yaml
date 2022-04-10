@@ -1,0 +1,10 @@
+apiVersion: v2
+name: mvn-app
+
+description: Mvn App kubernetes deployment
+
+type: application
+
+version: 0.0.1
+
+appVersion: "1.15.1"

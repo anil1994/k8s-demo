@@ -1,0 +1,16 @@
+{{- if .Values.service.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "mvn-app.fullname" . }}
+  labels:
+    {{- include "mvn-app.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    {{- include "mvn-app.selectorLabels" . | nindent 4 }}
+{{- end }}
