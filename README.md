@@ -86,6 +86,13 @@ Bootstrap K3S Cluster:
 NAME    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
 jenkins jenkins         3               2022-04-09 21:05:38.276617889 +0000 UTC deployed        jenkins-3.11.10 2.332.2  
 ```
+
+In order to handle persistent volume issue, I used Local-Path provisioner that come from k3s as default.
+``` 
+$ kubectl get pv -n jenkins
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                       STORAGECLASS   REASON   AGE
+pvc-e15ac343-c871-4d79-87ec-82bb77c3813b   8Gi        RWO            Delete           Bound    jenkins/jenkins                             local-path              27h
+``` 
 ## Jenkins Slave
 
 I used jumpbox vm server on Google Cloud for Jenkins Slave. 
@@ -106,6 +113,14 @@ nexus   nexus           1               2022-04-10 12:27:27.331443909 +0000 UTC 
 ```
 
 http://104.199.57.196:31582 //nexus UI reachable from internet for demo purpose
+
+
+In order to handle persistent volume issue, I used Local-Path provisioner that come from k3s as default.
+```
+$ kubectl get pv -n nexus
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                       STORAGECLASS   REASON   AGE
+pvc-6d29c9e8-f7e5-4df2-83b1-8b284651e6d9   4G         RWO            Delete           Bound    nexus/nexus-nexus-repository-manager-data   local-path              9h
+```
 
 ## Junit 
 
