@@ -48,5 +48,6 @@ pipeline {
             steps {
                sh 'helm upgrade -i mvn-app helm-manifests/  --set image.tag=$BUILD_NUMBER'
             }
+        }
     }
 }
