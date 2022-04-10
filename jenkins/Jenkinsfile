@@ -28,19 +28,24 @@ pipeline {
                 }
             }
         }
-        stage('Docker build-login-push') {
+        stage('Docker package') {
             steps {
                 
-                sh ' sudo docker build . -t ${Nexus_URL}/demo-mvn:${BUILD_NUMBER} && \
+                sh ' sudo docker build . -t ${Nexus_URL}/demo-mvn:${env.BUILD_ID} && \
                      sudo docker login -u ${ImageRegistry_Username} -p ${ImageRegistry_Password}  ${Nexus_URL}  && \
-                     sudo docker push  ${Nexus_URL}/demo-mvn:${BUILD_NUMBER} 
+                     sudo docker push  ${Nexus_URL}/demo-mvn:${env.BUILD_ID} 
                 '
             }
         }
         
         stage('Helm Chart Deploy')
+            when {
+              expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+              }
+            }
             steps {
-               sh 'helm upgrade -i mvn-app helm-manifests/  --set image.tag=${BUILD_NUMBER}'
+               sh 'helm upgrade -i mvn-app helm-manifests/  --set image.tag=${env.BUILD_ID}'
             }
     }
 }
