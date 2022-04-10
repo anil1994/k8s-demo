@@ -2,9 +2,9 @@ pipeline {
     
     environment {
         
-     ImageRegistry_Username=${param.ImageRegistry_Username}
-     ImageRegistry_Password=${param.ImageRegistry_Password}
-     Nexus_URL=${param.Nexus_URL}
+     ImageRegistry_Username="${param.ImageRegistry_Username}"
+     ImageRegistry_Password="${param.ImageRegistry_Password}"
+     Nexus_URL="${param.Nexus_URL}"
         
     }
     agent {
