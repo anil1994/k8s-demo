@@ -132,3 +132,13 @@ I added helm manifests as well to this github repository.
 ```
 $ helm upgrade -i mvn-app helm-manifests/ --set image.tag=$BUILD_NUMBER'
 ```
+```
+
+$ helm list
+NAME    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
+mvn-app default         2               2022-04-10 21:19:41.621831468 +0000 UTC deployed        mvn-app-0.0.1   1.15.1 
+```
+```
+$ kubectl logs mvn-chart-5967dd6d49-hr4ds
+Hello World!
+```
