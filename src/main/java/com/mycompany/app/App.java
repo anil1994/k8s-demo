@@ -12,6 +12,7 @@ public class App
 
     public static void main(String[] args) {
         System.out.println(new App().getMessage());
+        TimeUnit.MINUTES.sleep(100);
     }
 
     private final String getMessage() {
