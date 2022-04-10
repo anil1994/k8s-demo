@@ -3,7 +3,7 @@ pipeline {
     environment {
         
      Nexus_Cred = credentials('nexus-credential')
-     Nexus_URL= 10.132.0.19:31422
+     Nexus_URL = "10.132.0.19:31422"
         
     }
     agent {
