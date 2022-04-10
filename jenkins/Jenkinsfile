@@ -1,5 +1,12 @@
 pipeline {
     
+    env {
+        
+     ImageRegistry_Username=${param.ImageRegistry_Username}
+     ImageRegistry_Password=${param.ImageRegistry_Password}
+     Nexus_URL=${param.Nexus_URL}
+        
+    }
     agent {
     node { label 'mvn' }
     } 
@@ -21,11 +28,19 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') {
+        stage('Docker build-login-push') {
             steps {
                 
-                sh ' sudo chmod +x ./jenkins/scripts/deliver.sh  &&  ./jenkins/scripts/deliver.sh'
+                sh ' sudo docker build . -t ${Nexus_URL}/demo-mvn:${BUILD_NUMBER} && \
+                     sudo docker login -u ${ImageRegistry_Username} -p ${ImageRegistry_Password}  ${Nexus_URL}  && \
+                     sudo docker push  ${Nexus_URL}/demo-mvn:${BUILD_NUMBER} 
+                '
             }
         }
+        
+        stage('Helm Chart Deploy')
+            steps {
+               sh 'helm upgrade -i mvn-app helm-manifests/  --set image.tag=${BUILD_NUMBER}'
+            }
     }
 }
