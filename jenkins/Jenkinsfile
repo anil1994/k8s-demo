@@ -31,10 +31,11 @@ pipeline {
         stage('Docker package') {
             steps {
                 
-                sh ' sudo docker build . -t ${Nexus_URL}/demo-mvn:${env.BUILD_NUMBER} && \
+                sh '''
+                     sudo docker build . -t ${Nexus_URL}/demo-mvn:$BUILD_NUMBER && \
                      sudo docker login -u ${ImageRegistry_Username} -p ${ImageRegistry_Password}  ${Nexus_URL}  && \
-                     sudo docker push  ${Nexus_URL}/demo-mvn:${env.BUILD_NUMBER}
-                   '
+                     sudo docker push  ${Nexus_URL}/demo-mvn:$BUILD_NUMBER
+                  '''
             }
         }
         
@@ -45,7 +46,7 @@ pipeline {
               }
             }
             steps {
-               sh 'helm upgrade -i mvn-app helm-manifests/  --set image.tag=${env.BUILD_NUMBER}'
+               sh 'helm upgrade -i mvn-app helm-manifests/  --set image.tag=$BUILD_NUMBER'
             }
     }
 }
