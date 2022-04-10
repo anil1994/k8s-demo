@@ -2,8 +2,7 @@ pipeline {
     
     environment {
         
-     ImageRegistry_Username="${param.ImageRegistry_Username}"
-     ImageRegistry_Password="${param.ImageRegistry_Password}"
+     Nexus_Cred = credentials('nexus-credential')
      Nexus_URL="${param.Nexus_URL}"
         
     }
@@ -33,7 +32,7 @@ pipeline {
                 
                 sh '''
                      sudo docker build . -t ${Nexus_URL}/demo-mvn:$BUILD_NUMBER && \
-                     sudo docker login -u ${ImageRegistry_Username} -p ${ImageRegistry_Password}  ${Nexus_URL}  && \
+                     sudo docker login -u $Nexus_Cred_USR -p $Nexus_Cred_PSW  ${Nexus_URL}  && \
                      sudo docker push  ${Nexus_URL}/demo-mvn:$BUILD_NUMBER
                   '''
             }
