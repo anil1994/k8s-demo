@@ -21,6 +21,8 @@ local-path (default)   rancher.io/local-path   Delete          WaitForFirstConsu
 
 ```
 
+![This is an image](https://github.com/anil1994/k8s-demo/blob/main/IAC-GCP%20Diagram.drawio.png)
+
 ## Requirements for Bootstraping k3s on GCP
 
 1- k3sup is a lightweight utility to get from zero to production-ready cluster with k3s on any local or remote VM. All you need is ssh access and the k3sup binary. 
