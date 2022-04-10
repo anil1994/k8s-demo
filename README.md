@@ -142,3 +142,4 @@ mvn-app default         2               2022-04-10 21:19:41.621831468 +0000 UTC 
 $ kubectl logs mvn-chart-5967dd6d49-hr4ds
 Hello World!
 ```
+
