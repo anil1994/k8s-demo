@@ -12,7 +12,7 @@ public class App
 
     public static void main(String[] args) {
         System.out.println(new App().getMessage());
-        wait(10000);
+        Thread.sleep(700000); 
     }
 
     private final String getMessage() {
