@@ -39,7 +39,7 @@ pipeline {
             }
         }
         
-        stage('Helm Chart Deploy')
+        stage('Helm Chart Deploy') {
             when {
               expression {
                 currentBuild.result == null || currentBuild.result == 'SUCCESS' 
