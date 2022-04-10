@@ -5,7 +5,7 @@
 replicas: 1
 
 image:
-  repository: http://10.132.0.19:31422/demo-mvn
+  repository: 10.132.0.19:31422/demo-mvn
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: latest
@@ -58,7 +58,7 @@ autoscaling:
   targetMemoryUtilizationPercentage: 80
 
 imageCredentials:
-  registry: http://10.132.0.19:31422
+  registry: 10.132.0.19:31422
   username: admin
   password: admin123
   email: adalkilic@ku.edu.tr
