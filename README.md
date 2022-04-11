@@ -98,8 +98,6 @@ pvc-e15ac343-c871-4d79-87ec-82bb77c3813b   8Gi        RWO            Delete     
 I used jumpbox vm server on Google Cloud for Jenkins Slave. 
 I installed docker,java,maven on it for managing maven build. 
 
-  
-
 ## Install Nexus
 
 I utilized https://artifacthub.io/packages/helm/sonatype/nexus-repository-manager this url for installing nexus.
@@ -124,8 +122,7 @@ pvc-6d29c9e8-f7e5-4df2-83b1-8b284651e6d9   4G         RWO            Delete     
 
 ## Junit 
 
-
-
+Junit is used for unit testing. I added test stage to jenkinsfile. You can easily see test result graph on jenkins job UI. There is junit plugin on my jenkins server. 
 
 ## Helm deploy
 I added helm manifests as well to this github repository.
@@ -145,3 +142,5 @@ Hello World!
 
 
 
+## CICD
+I used jenkins for CI/CD pipeline in order to build our mvn  docker application and deploy helm chart deployment to k3s . it is so easy to integrate with CI/CD by using jenkins. There are many jenkins plugins that can integrate with so many places. 
